@@ -1,0 +1,43 @@
+grid-square {
+    display: inline-block;
+    border: 2px solid black;
+    margin: -1px;
+    width: 30px;
+    height: 30px;
+}
+
+#content {
+    min-width: 800px;
+}
+
+div#grid {
+    margin: auto;
+    margin-top: 20px;
+}
+
+button#reset {
+    margin: auto;
+    margin-top: 20px;
+    display: block;
+}
+
+h1 {
+    font-family: arial;
+    margin: auto;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#colours {
+    margin: auto;
+    margin-top: 20px;
+}
+
+#colours > button, #reset{
+    border-radius: 4px;
+    border-width: 2px;
+    font-size: 16px;
+    padding: 10px;
+    font-family: arial;
+    width: 75px;
+}
