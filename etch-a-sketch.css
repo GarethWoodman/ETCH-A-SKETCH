@@ -1,7 +1,7 @@
 grid-square {
     display: inline-block;
-    border: 2px solid rgb(202, 202, 202);
-    margin: -1px;
+    border: 1px solid rgb(202, 202, 202);
+    margin: 0px;
     width: 30px;
     height: 30px;
 }
