@@ -1,13 +1,13 @@
-let originalColour = 'black';
-
 let gridSize = 16;
 let grid = [];
-let gridSection = document.querySelector("#grid");
+let gridWrapper = document.querySelector("#grid");
 let brs = document.querySelectorAll("br");
+let originalColour = 'black';
 
 let buttonColours = document.getElementById('colours').querySelectorAll('button');
 buttonColours.forEach(function(button){
     button.style.borderColor = button.name;
+    button.style.opacity = 0.7;
     button.addEventListener('click', function(){
         originalColour = this.name;
     })
@@ -15,71 +15,67 @@ buttonColours.forEach(function(button){
 
 let resetBtn = document.querySelector('#reset');
 resetBtn.addEventListener('click', function(){
-    grid.forEach(function(element){
-        element.style.backgroundColor = 'white';
-        element.isClicked = false;
-    });
-    removeGrid();
     gridSize = prompt("Please enter a grid size");
-    newRound();
+    grid.forEach(function(element){element.style.backgroundColor = 'white';});
+    removeGrid();
+    newGame();
 });
 
+let mouseDown = false;
+gridWrapper.addEventListener('mousedown', function(){
+    mouseDown = true;
+})
+
+gridWrapper.addEventListener('mouseup', function(){
+    mouseDown = false;
+})
+
 function removeGrid(){
-    grid.forEach(function(element){
-        gridSection.removeChild(element);
-    });
+    grid.forEach(function(element){gridWrapper.removeChild(element);});
+    for(let y=0; y<gridSize; y++){gridWrapper.innerHTML = gridWrapper.innerHTML.replace('<br>','')}
     grid = [];
-    for(let y=0; y<gridSize; y++){
-        gridSection.innerHTML = gridSection.innerHTML.replace('<br>','')
-    }
 }
 
 function createGrid(gridSize){
     for(let y=0; y<gridSize; y++){
         for(let x=0; x<gridSize; x++){
             let gridSquare = document.createElement("grid-square")
-            gridSection.appendChild(gridSquare);
+            gridWrapper.appendChild(gridSquare);
             grid.push(gridSquare);
         }
-        let br = document.createElement("br");
-        gridSection.appendChild(br);
+        gridWrapper.appendChild(document.createElement("br"));
     }
 }
 
-function newRound(){
+function newGame(){
     createGrid(gridSize);
     
     grid.forEach(function(element){
         element.addEventListener('mouseover', hover);
-        //element.addEventListener('click', clicked);
-        //element.addEventListener('mouseout', original);
+        element.addEventListener('mousedown', clicked);
+        element.addEventListener('mouseout', original);
     })
 
-
     function hover(){
-        if(!this.isClicked){
+        this.style.opacity = 0.5;
+        if(!this.style.backgroundColor){this.style.backgroundColor='grey'}
+        if(mouseDown){
             this.style.backgroundColor = originalColour;
         }
     }
 
     function clicked(){
-        if(!this.isClicked){
-            this.style.backgroundColor = originalColour;
-            this.isClicked = true;
-        } else {
-            this.style.backgroundColor = 'white';
-            this.isClicked = false;
-        }
-        
-    }
+        this.style.backgroundColor = originalColour;
+    };
 
     function original(){
-        if(!this.isClicked){
-            this.style.backgroundColor = 'white';
+        this.style.opacity = 1;
+        if(this.style.backgroundColor==='grey'){this.style.backgroundColor='white'}
+        if(mouseDown){
+            this.style.backgroundColor = originalColour;
+            return;
         }
     }
-
+    
 }
-newRound();
-
-//for(var x=0; x < 17; x++);
+newGame();
