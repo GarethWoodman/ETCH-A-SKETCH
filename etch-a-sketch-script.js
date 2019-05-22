@@ -32,7 +32,7 @@ gridWrapper.addEventListener('mouseup', function(){
 
 function removeGrid(){
     grid.forEach(function(element){gridWrapper.removeChild(element);});
-    for(let y=0; y<gridSize; y++){gridWrapper.innerHTML = gridWrapper.innerHTML.replace('<br>','')}
+    for(let y=0; y<100; y++){gridWrapper.innerHTML = gridWrapper.innerHTML.replace('<br>','')}
     grid = [];
 }
 
