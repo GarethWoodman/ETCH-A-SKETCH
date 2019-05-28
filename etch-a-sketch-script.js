@@ -70,7 +70,7 @@ function newGame(){
 
     function original(){
         this.style.opacity = 1;
-        if(this.style.backgroundColor==='grey'){this.style.backgroundColor='white'}
+        if(this.style.backgroundColor==='grey'){this.style.backgroundColor=''}
         if(mouseDown){
             this.style.backgroundColor = originalColour;
             return;
