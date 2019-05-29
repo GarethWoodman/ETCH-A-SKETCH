@@ -5,16 +5,14 @@
         <link rel="stylesheet" type="text/css" href="./etch-a-sketch.css">
     </head>
     <body>
+        <script src="jscolor.js"></script>
         <center>
             <div id="content">
                 <h1>Etch-a-Sketch!</h1>
                 <button id="reset">Reset</button>
                 <div id="grid" onmousedown="return false"></div>
                 <div id="colours">
-                    <button name="black">Black</button>
-                    <button name="red">Red</button>
-                    <button name="#7CFC00">Green</button>
-                    <button name="blue">Blue</button>
+                    <input class="jscolor" value="Select Colour">
                 </div>
             </div>
         </center>

@@ -3,6 +3,7 @@ let grid = [];
 let gridWrapper = document.querySelector("#grid");
 let brs = document.querySelectorAll("br");
 let originalColour = 'black';
+let colourPicker = document.querySelector(".jscolor");
 
 let buttonColours = document.getElementById('colours').querySelectorAll('button');
 buttonColours.forEach(function(button){
@@ -60,21 +61,24 @@ function newGame(){
         this.style.opacity = 0.5;
         if(!this.style.backgroundColor){this.style.backgroundColor='grey'}
         if(mouseDown){
-            this.style.backgroundColor = originalColour;
+            return getColour(this);
         }
     }
 
     function clicked(){
-        this.style.backgroundColor = originalColour;
+        return getColour(this);
     };
 
     function original(){
         this.style.opacity = 1;
         if(this.style.backgroundColor==='grey'){this.style.backgroundColor=''}
         if(mouseDown){
-            this.style.backgroundColor = originalColour;
-            return;
+            return getColour(this);
         }
+    }
+
+    function getColour(colour){
+        return colour.style.backgroundColor = colourPicker.style.backgroundColor;
     }
     
 }
